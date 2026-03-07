@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>診断結果</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+
+body{
+ font-family:sans-serif;
+ text-align:center;
+ padding:20px;
+}
+
+#result-image{
+ width:200px;
+ max-width:80%;
+}
+
+#result-text{
+ padding:20px;
+ border-radius:15px;
+ margin-top:15px;
+}
+
+#qr{
+ margin-top:20px;
+ padding: 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+ <h1>あなたのタイプは…</h1>
+
+
+ <h2 id="result-name"></h2>
+
+ <p id="result-text"></p>
+
+ <h3>この結果を持ち帰る</h3>
+
+ <!-- <div id="qr"></div> -->
+
+ <script src="js/result.js"></script>
+
+</body>
+</html>
