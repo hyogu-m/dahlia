@@ -101,3 +101,4 @@ new QRCode(
  document.getElementById("qr"),
  location.href
 );
+
