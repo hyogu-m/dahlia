@@ -33,6 +33,8 @@ textarea {
   max-width: 390px;
   height: 100vh;
   background: #ffffff;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,10 +42,46 @@ textarea {
   gap: 40px;
 }
 
+.landing-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.landing-slider-track {
+  width: 200%;
+  height: 100%;
+  display: flex;
+  animation: landing-slide-loop 24s linear infinite;
+}
+
+.landing-slider-image {
+  width: 50%;
+  height: 100%;
+  flex: 0 0 50%;
+  object-fit: cover;
+}
+
+.app::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35);
+  z-index: 1;
+}
+
 .title {
   margin: 0;
   font-size: 40px;
-  text-align:center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
+}
+
+.button-area {
+  position: relative;
+  z-index: 2;
 }
 
 .start-btn {
@@ -54,6 +92,21 @@ textarea {
   font-size: 32px;
   padding: 18px 30px;
   cursor: pointer;
+}
+
+@keyframes landing-slide-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-slider-track {
+    animation: none;
+  }
 }
 
 .menu-page {
@@ -203,16 +256,23 @@ textarea {
 .menu-card {
   background: #f4f4f4;
   border-radius: 14px;
-  min-height: 92px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 4px;
   padding: 10px;
   border: 2px solid transparent;
   cursor: pointer;
   position: relative;
   padding-bottom: 30px;
+}
+
+.menu-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .menu-card.has-qty {

@@ -1,13 +1,80 @@
 const startButton = document.querySelector('.start-btn');
+const startAudio = document.querySelector('#start-audio');
+const START_SOUND_SRC = 'assets/start-sound.mp3';
+const START_SOUND_PENDING_KEY = 'dahlia_start_sound_pending';
+const START_SOUND_STARTED_AT_KEY = 'dahlia_start_sound_started_at';
 
 if (startButton) {
   startButton.addEventListener('click', () => {
-    window.location.href = 'category.html';
+    let hasNavigated = false;
+    const navigateToCategory = () => {
+      if (hasNavigated) {
+        return;
+      }
+      hasNavigated = true;
+      window.location.href = 'category.html';
+    };
+
+    if (!startAudio) {
+      navigateToCategory();
+      return;
+    }
+
+    startAudio.currentTime = 0;
+    const playPromise = startAudio.play();
+    sessionStorage.setItem(START_SOUND_PENDING_KEY, '1');
+    sessionStorage.setItem(START_SOUND_STARTED_AT_KEY, String(Date.now()));
+
+    // Keep transition snappy while preserving sound continuity after navigation.
+    setTimeout(navigateToCategory, 120);
+
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        navigateToCategory();
+      });
+    }
   });
 }
 
 if (document.body.classList.contains('menu-page')) {
+  resumeStartSoundOnMenuPage();
   initMenuPage();
+}
+
+function resumeStartSoundOnMenuPage() {
+  const isPending = sessionStorage.getItem(START_SOUND_PENDING_KEY) === '1';
+  if (!isPending) {
+    return;
+  }
+
+  sessionStorage.removeItem(START_SOUND_PENDING_KEY);
+
+  const startedAt = Number(sessionStorage.getItem(START_SOUND_STARTED_AT_KEY) ?? '0');
+  sessionStorage.removeItem(START_SOUND_STARTED_AT_KEY);
+
+  if (!Number.isFinite(startedAt) || startedAt <= 0) {
+    return;
+  }
+
+  const elapsed = Math.max(0, (Date.now() - startedAt) / 1000);
+  const carryAudio = new Audio(START_SOUND_SRC);
+  carryAudio.preload = 'auto';
+
+  const playWithOffset = () => {
+    if (!Number.isFinite(carryAudio.duration) || carryAudio.duration <= 0 || elapsed >= carryAudio.duration) {
+      return;
+    }
+
+    carryAudio.currentTime = Math.min(elapsed, Math.max(0, carryAudio.duration - 0.05));
+    carryAudio.play().catch(() => {});
+  };
+
+  if (carryAudio.readyState >= 1) {
+    playWithOffset();
+    return;
+  }
+
+  carryAudio.addEventListener('loadedmetadata', playWithOffset, { once: true });
 }
 
 function initMenuPage() {
@@ -84,7 +151,6 @@ function initMenuPage() {
 
     renderCart();
     closeOrderModal();
-    openCartPanel();
     window.alert('注文を受け付けました');
   });
 
@@ -227,14 +293,20 @@ function initMenuPage() {
       view.textContent = String(quantity);
     }
     card.classList.toggle('has-qty', quantity > 0);
+    updateCartCount();
   }
 
   function renderCart() {
     renderHistoryItems();
+    updateCartCount();
+  }
 
-    if (cartCount) {
-      cartCount.textContent = String(cartItems.length);
+  function updateCartCount() {
+    if (!cartCount) {
+      return;
     }
+    const total = menuCards.reduce((sum, card) => sum + getCardQuantity(card), 0);
+    cartCount.textContent = String(total);
   }
 
   function renderHistoryItems() {
