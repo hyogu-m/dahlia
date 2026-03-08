@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>カテゴリー</title>
+    <link rel="stylesheet" href="style.css?v=20260307-1" />
+  </head>
+
+  <body class="menu-page">
+    <main class="menu-screen">
+      <header class="menu-header">
+        <button class="menu-toggle" type="button" aria-label="カテゴリを開く" aria-expanded="false">
+          <span class="menu-toggle-line"></span>
+          <span class="menu-toggle-line"></span>
+          <span class="menu-toggle-line"></span>
+        </button>
+        <h1 class="menu-title">メニュー</h1>
+        <button class="cart-icon-btn" type="button" aria-label="履歴を開く">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 6v6l4 2M21 12a9 9 0 1 1-9-9"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="cart-count">0</span>
+        </button>
+      </header>
+
+      <!-- aria-expanded="false" :今は閉じてて開いたらtrue -->
+      <nav class="category-nav" hidden aria-label="カテゴリジャンプ">
+        <button type="button" class="category-nav-item" data-target="section-ippin">逸品</button>
+        <button type="button" class="category-nav-item" data-target="section-teppan">鉄板焼き</button>
+        <button type="button" class="category-nav-item" data-target="section-fried">揚げ物</button>
+        <button type="button" class="category-nav-item" data-target="section-salad">サラダ</button>
+        <button type="button" class="category-nav-item" data-target="section-drink">ドリンク</button>
+      </nav>
+
+      <!-- jsでスクロール制御したい＝＞date-target="section-ippinを持たせてidで飛ばす" -->
+
+      <section class="menu-content" aria-label="料理一覧">
+        <section class="menu-block" id="section-ippin">
+          <h3 class="menu-block-title">逸品</h3>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-dashimaki-tamago.png" alt="だし巻きたまご" loading="lazy" />
+              <p class="menu-name">だし巻きたまご</p>
+              <p class="menu-tags">和食</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-cheese.png" alt="チーズ" loading="lazy" />
+              <p class="menu-name">チーズ</p>
+              <p class="menu-tags">和食・重</p>
+              <p class="menu-price">495円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/takowasa.png" alt="ねぎ" loading="lazy" />
+              <p class="menu-name">たこわさ</p>
+              <p class="menu-tags">魚・軽・スピードメニュー</p>
+              <p class="menu-price">495円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-sashimi-3shu.png" alt="お造り3種盛り" loading="lazy" />
+              <p class="menu-name">お造り3種盛り</p>
+              <p class="menu-tags">魚・軽</p>
+              <p class="menu-price">858円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-doteyaki.png" alt="どて焼" loading="lazy" />
+              <p class="menu-name">どて焼</p>
+              <p class="menu-tags">肉・茶色</p>
+              <p class="menu-price">638円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-oden.png" alt="おでん" loading="lazy" />
+              <p class="menu-name">おでん</p>
+              <p class="menu-tags">茶色・和食</p>
+              <p class="menu-price">748円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-yakitori.png" alt="焼き鳥（2本）" loading="lazy" />
+              <p class="menu-name">焼き鳥（2本）</p>
+              <p class="menu-tags">肉</p>
+              <p class="menu-price">462円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-nitamago.png" alt="煮卵" loading="lazy" />
+              <p class="menu-name">煮卵</p>
+              <p class="menu-tags">茶色・スピード</p>
+              <p class="menu-price">352円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-gyoza.png" alt="ぎょうざ（6個）" loading="lazy" />
+              <p class="menu-name">ぎょうざ（6個）</p>
+              <p class="menu-tags">肉・海外</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-chahan.png" alt="チャーハン" loading="lazy" />
+              <p class="menu-name">チャーハン</p>
+              <p class="menu-tags">海外</p>
+              <p class="menu-price">748円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-yaki-onigiri.png" alt="焼きおにぎり（2個）" loading="lazy" />
+              <p class="menu-name">焼きおにぎり（2個）</p>
+              <p class="menu-tags">茶色・和食</p>
+              <p class="menu-price">462円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-chazuke.png" alt="茶漬け" loading="lazy" />
+              <p class="menu-name">茶漬け</p>
+              <p class="menu-tags">和食</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-yukke.png" alt="ユッケ" loading="lazy" />
+              <p class="menu-name">ユッケ</p>
+              <p class="menu-tags">海外・肉</p>
+              <p class="menu-price">858円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/ippin-torikawa-ponzu.png" alt="鶏皮ポン酢" loading="lazy" />
+              <p class="menu-name">鶏皮ポン酢</p>
+              <p class="menu-tags">肉・軽</p>
+              <p class="menu-price">462円</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- menu-block:カテゴリ一個分/menu-grid:その中でカードを並べる場所-->
+        <!-- 一つのまとまった情報のかたまり＝article-->
+        <!-- 料理画像が大量にあるから、最初に全部読み込まないようにしたい。loading="lazy"-->
+
+        <section class="menu-block" id="section-teppan">
+          <h3 class="menu-block-title">鉄板焼き</h3>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <img class="menu-image" src="assets/teppan-yakisoba.png" alt="やきそば" loading="lazy" />
+              <p class="menu-name">やきそば</p>
+              <p class="menu-tags">肉・重・野菜</p>
+              <p class="menu-price">748円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/teppan-tonpei-yaki.png" alt="とん平焼き" loading="lazy" />
+              <p class="menu-name">とん平焼き</p>
+              <p class="menu-tags">野菜・肉</p>
+              <p class="menu-price">638円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/teppan-hotate-butter-soy.png" alt="ほたてのバター醬油" loading="lazy" />
+              <p class="menu-name">ほたてのバター醬油</p>
+              <p class="menu-tags">魚・重</p>
+              <p class="menu-price">858円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/teppan-carpaccio.png" alt="カルパッチョ" loading="lazy" />
+              <p class="menu-name">カルパッチョ</p>
+              <p class="menu-tags">魚・軽・洋</p>
+              <p class="menu-price">858円</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-block" id="section-fried">
+          <h3 class="menu-block-title">揚げ物</h3>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-karaage.png" alt="唐揚げ（5個）" loading="lazy" />
+              <p class="menu-name">唐揚げ（5個）</p>
+              <p class="menu-tags">揚げ物・茶色</p>
+              <p class="menu-price">638円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-yangnyeom.png" alt="ヤンニョム" loading="lazy" />
+              <p class="menu-name">ヤンニョム</p>
+              <p class="menu-tags">揚げ物・海外</p>
+              <p class="menu-price">748円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-yurinchi.png" alt="油淋鶏" loading="lazy" />
+              <p class="menu-name">油淋鶏</p>
+              <p class="menu-tags">揚げ物・茶色</p>
+              <p class="menu-price">748円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-tartar.png" alt="タルタル" loading="lazy" />
+              <p class="menu-name">タルタル</p>
+              <p class="menu-tags">揚げ物・重</p>
+              <p class="menu-price">792円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-potato.png" alt="ポテト" loading="lazy" />
+              <p class="menu-name">ポテト</p>
+              <p class="menu-tags">揚げ物・黄色</p>
+              <p class="menu-price">462円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-korokke.png" alt="コロッケ（2個）" loading="lazy" />
+              <p class="menu-name">コロッケ（2個）</p>
+              <p class="menu-tags">揚げ物・肉・重</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-mochi-cheese.png" alt="もちチーズフライ" loading="lazy" />
+              <p class="menu-name">もちチーズフライ</p>
+              <p class="menu-tags">揚げ物・重</p>
+              <p class="menu-price">638円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-tako-karaage.png" alt="たこの唐揚げ" loading="lazy" />
+              <p class="menu-name">たこの唐揚げ</p>
+              <p class="menu-tags">揚げ物・魚</p>
+              <p class="menu-price">748円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-nankotsu-karaage.png" alt="軟骨唐揚げ" loading="lazy" />
+              <p class="menu-name">軟骨唐揚げ</p>
+              <p class="menu-tags">揚げ物</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/fried-fish-and-chips.png" alt="フィッシュ&チップス" loading="lazy" />
+              <p class="menu-name">フィッシュ&チップス</p>
+              <p class="menu-tags">揚げ物・魚・洋</p>
+              <p class="menu-price">858円</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-block" id="section-salad">
+          <h3 class="menu-block-title">サラダ</h3>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-caesar-salad.png" alt="シーザーサラダ" loading="lazy" />
+              <p class="menu-name">シーザーサラダ</p>
+              <p class="menu-tags">野菜・軽</p>
+              <p class="menu-price">638円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-potato-salad.png" alt="ポテトサラダ" loading="lazy" />
+              <p class="menu-name">ポテトサラダ</p>
+              <p class="menu-tags">野菜・重</p>
+              <p class="menu-price">495円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-choregi-salad.png" alt="チョレギサラダ" loading="lazy" />
+              <p class="menu-name">チョレギサラダ</p>
+              <p class="menu-tags">野菜・海外</p>
+              <p class="menu-price">638円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-tomato.png" alt="トマト" loading="lazy" />
+              <p class="menu-name">トマト</p>
+              <p class="menu-tags">野菜・軽</p>
+              <p class="menu-price">418円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-shio-cabbage.png" alt="塩だれキャベツ" loading="lazy" />
+              <p class="menu-name">塩だれキャベツ</p>
+              <p class="menu-tags">野菜・スピード</p>
+              <p class="menu-price">352円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-yamitsuki-cucumber.png" alt="やみつききゅうり" loading="lazy" />
+              <p class="menu-name">やみつききゅうり</p>
+              <p class="menu-tags">野菜・スピード</p>
+              <p class="menu-price">352円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-ippon-cucumber.png" alt="きゅうりの一本漬け" loading="lazy" />
+              <p class="menu-name">きゅうりの一本漬け</p>
+              <p class="menu-tags">野菜・スピード</p>
+              <p class="menu-price">418円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/salad-edamame.png" alt="枝豆" loading="lazy" />
+              <p class="menu-name">枝豆</p>
+              <p class="menu-tags">野菜・スピード</p>
+              <p class="menu-price">352円</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-block" id="section-drink">
+          <h3 class="menu-block-title">ドリンク</h3>
+          <h4 class="menu-subtitle">アルコール</h4>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-sour.png" alt="サワー各種" loading="lazy" />
+              <p class="menu-name">サワー各種</p>
+              <p class="menu-tags">洋</p>
+              <p class="menu-price">462円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-chuhai.png" alt="チューハイ各種" loading="lazy" />
+              <p class="menu-name">チューハイ各種</p>
+              <p class="menu-tags">洋</p>
+              <p class="menu-price">462円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-beer.png" alt="生ビール" loading="lazy" />
+              <p class="menu-name">生ビール</p>
+              <p class="menu-tags">酒</p>
+              <p class="menu-price">605円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-shochu.png" alt="焼酎" loading="lazy" />
+              <p class="menu-name">焼酎</p>
+              <p class="menu-tags">酒</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-highball.png" alt="ハイボール" loading="lazy" />
+              <p class="menu-name">ハイボール</p>
+              <p class="menu-tags">酒</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-sake.png" alt="日本酒" loading="lazy" />
+              <p class="menu-name">日本酒</p>
+              <p class="menu-tags">酒</p>
+              <p class="menu-price">638円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-wine.png" alt="ワイン" loading="lazy" />
+              <p class="menu-name">ワイン</p>
+              <p class="menu-tags">酒・洋</p>
+              <p class="menu-price">528円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-cocktails.png" alt="カクテル各種" loading="lazy" />
+              <p class="menu-name">カクテル各種</p>
+              <p class="menu-tags">洋・甘</p>
+              <p class="menu-price">550円</p>
+            </article>
+          </div>
+
+          <h4 class="menu-subtitle">ソフトドリンク</h4>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-cola.png" alt="コーラ" loading="lazy" />
+              <p class="menu-name">コーラ</p>
+              <p class="menu-tags">炭酸・ジャンク</p>
+              <p class="menu-price">308円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-oolong-tea.png" alt="ウーロン茶" loading="lazy" />
+              <p class="menu-name">ウーロン茶</p>
+              <p class="menu-tags">茶色・軽</p>
+              <p class="menu-price">308円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-orange-juice.png" alt="オレンジジュース" loading="lazy" />
+              <p class="menu-name">オレンジジュース</p>
+              <p class="menu-tags">洋・甘</p>
+              <p class="menu-price">352円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-mix-juice.png" alt="ミックスジュース" loading="lazy" />
+              <p class="menu-name">ミックスジュース</p>
+              <p class="menu-tags">洋・甘</p>
+              <p class="menu-price">418円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-ginger-ale.png" alt="ジンジャーエール" loading="lazy" />
+              <p class="menu-name">ジンジャーエール</p>
+              <p class="menu-tags">甘</p>
+              <p class="menu-price">352円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-calpis.png" alt="カルピス" loading="lazy" />
+              <p class="menu-name">カルピス</p>
+              <p class="menu-tags">甘</p>
+              <p class="menu-price">352円</p>
+            </article>
+            <article class="menu-card">
+              <img class="menu-image" src="assets/drink-water.png" alt="水" loading="lazy" />
+              <p class="menu-name">水</p>
+              <p class="menu-tags">ノンアル</p>
+              <p class="menu-price">0円</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <aside class="cart-panel" aria-label="カート詳細" hidden>
+        <div class="cart-panel-header">
+          <h2 class="cart-panel-title">履歴</h2>
+          <button class="cart-close-btn" type="button" aria-label="閉じる">×</button>
+        </div>
+
+        <section class="cart-section">
+          <ul class="history-list"></ul>
+          <p class="history-empty">履歴はまだありません</p>
+          <p class="history-total">累計: 0円</p>
+        </section>
+        <!-- jsで中身が変わる前提のコード、空のulなど-->
+        <button type="button" class="history-checkout-btn">おあいそ</button>
+      </aside>
+      <div class="cart-overlay" hidden></div>
+      <div class="order-overlay" hidden></div>
+      <section class="order-modal" aria-label="注文確認" hidden>
+        <h2 class="order-title">注文確認</h2>
+        <ul class="order-list"></ul>
+        <p class="order-empty">数量を選んでください</p>
+        <p class="order-total">合計: 0円</p>
+        <div class="order-actions">
+          <button type="button" class="order-cancel-btn">戻る</button>
+          <button type="button" class="order-confirm-btn">注文する</button>
+        </div>
+      </section>
+
+      <footer class="menu-actions">
+        <button class="action-btn checkout-btn">注文へ</button>
+      </footer>
+    </main>
+    <script src="js/diagnosis.js?v=20260308-1"></script>
+    <script src="script.js?v=20260308-1"></script>
+  </body>
+</html>

@@ -8,40 +8,155 @@ const type = params.get("type");
 
 const results = {
 
- powerLion:{
+ lion:{
   name:"パワフルライオン",
-  text:"肉中心のエネルギッシュタイプ"
+  text:"今日のあなたはとても肉食系。たんぱく質は筋肉を育てるのに重要な存在です。今日からあなたも筋トレ仲間ですね。"
+  
  },
 
- healthyKoala:{
+ koala:{
   name:"ヘルシーコアラ",
-  text:"野菜中心の健康タイプ"
+  text:"健康を常に意識しているあなた。たくさん誘惑がある中でもなおバランスの取れた食事を意識できることは簡単なことではありません。とても素敵ですよ。たまには息抜きしてもいいんですよ。"
  },
 
- pigBoss:{
+ pig:{
   name:"どすこいピッグ",
-  text:"揚げ物大好き豪快タイプ"
+  text:"今日はよく食べましたね。気分もアゲアゲ。知ってますか？豚って体脂肪率がすごく低いんです。つまり揚げ物はカロリーゼロ。どんどん食べましょう。"
  },
 
  chameleon:{
   name:"ミーハーカメレオン",
-  text:"色々頼むバランスタイプ"
+  text:"いろんなものに手を出したくなるタイプ。できる限り知っている味を増やしたいみたいですね。人生は一度きりです、気になるものはどんどん追求していきましょう。"
+ },
+ 
+ fullElephant:{
+    name:"まんぷくぞうさん" ,
+    text:"とにかくお腹いっぱいになるものを食べたかった気分ですか？満腹になることはお腹も心も満たされます。たくさん食べる人は素敵ですよ。そのまま寝ないようにだけ気をつけてください。"
+ },
+
+ heavyElephant:{
+    name:"胃もたれぞうさん" ,
+    text:"そんなにお腹が空いてたんですか？美味しそうにたくさん食べる姿はとても魅力的ですが、少し心配になります。明日は胃腸を休ませてあげてくださいね。"
+ },
+
+ panda:{
+    name:"もぐもぐパンダ" ,
+    text:"海外旅行気分になりたい日。食事は一番簡単に文化を感じられる存在ですよね。口だけ飛び立った気分ですね。実はパンダって肉食なんですよ？次は目でも楽しんでください。"
+ },
+
+ cheetah:{
+    name:"せっかちチーター" ,
+    text:"お腹が空いてると何でもいいから早く食べたくなりますよね。わかります。早食いは身体に良くないので気をつけてくださいね。"
+ },
+
+ snake:{
+    name:"呑んべえヘビ" ,
+    text:"気づけば選んでいるのは度数高めのお酒。焼酎や日本酒などもぐいぐい進むタイプです。「まだいける」が口ぐせになっているかもしれません。翌日の予定は大丈夫ですか？"
+ },
+
+ rabbit:{
+    name:"フッ軽うさぎ" ,
+    text:"軽めでさっぱりした料理を選びがちなタイプ。お腹にやさしく、重くならないのがポイントです。つまりこれは、次の予定や二軒目にもすぐ動ける準備万端ということ。ぴょんっと行きましょう。"
+ },
+
+ japaneseStyle:{
+    name:"日本人" ,
+    text:"和食を選びがちなタイプ。知っていますか？日本人の主食はお米なんです。つまりこれは、とても自然なこと。お米を頼んでしまうのは、もはや本能かもしれません。"
+ },
+
+ alpaca:{
+    name:"アルパカソムリエ" ,
+    text:"おしゃれでフルーティーなものを選びがちなタイプ。実はアルパカはグルメで、繊細な味を好むと言われています。つまりこれは、かなりのソムリエ気質ということ。"
+ },
+
+ pelican:{
+    name:"おてんばペリカン" ,
+    text:"魚料理をよく選ぶあなた。ペリカンといえば大きなくちばしで魚をぱくっと食べる鳥。もしかしてその豪快さ、ちょっと似ていませんか。"
+ },
+
+ bear:{
+    name:"ブラウンくまさん" ,
+    text:"茶色い料理をよく選ぶあなた。くまは森で見つけたものをぱくぱく食べる雑食家です。茶色いものが好きなのも納得かもしれません。"
+ },
+
+ raccoonDog:{
+    name:"あまあまたぬき",
+    text:"甘いものをつい選びがちなあなた。たぬきは甘党で知られる動物です。気づけばまた、甘い誘惑に負けていませんか。"
  }
 
 };
 
+const images = {
+ lion: "img/lion.png",
+ koala: "img/koala.png",
+ pig: "img/pig.png",
+ chameleon: "img/chameleon.png",
+ fullElephant: "img/fullElephant.png",
+ heavyElephant: "img/heavyElephant.png",
+ panda: "img/panda.png",
+ cheetah: "img/cheetah.png",
+ snake: "img/snake.png",
+ rabbit: "img/rabbit.png",
+ japaneseStyle: "img/japaneseStyle.png",
+ alpaca: "img/alpaca.png",
+ pelican: "img/pelican.png",
+ bear: "img/bear.png",
+ raccoonDog: "img/raccoonDog.png"
+};
 
 // 表示
 
-const result = results[type];
+const safeType = results[type] ? type : "chameleon";
+const result = results[safeType];
+const imagePath = images[safeType] ?? images.chameleon;
+const formattedText = formatResultText(result.text);
 
 document.getElementById("result-name").textContent = result.name;
-document.getElementById("result-text").textContent = result.text;
+document.getElementById("result-text").textContent = formattedText;
+const imageEl = document.getElementById("result-image");
+if (imageEl) {
+ imageEl.src = imagePath;
+ imageEl.alt = result.name;
+}
 
 
-// QRコード生成
+// 伝票バーコード生成
 
-new QRCode(
- document.getElementById("qr"),
- location.href
-);
+const receiptCode = buildReceiptCode();
+const receiptCodeEl = document.getElementById("receipt-code");
+if (receiptCodeEl) {
+ receiptCodeEl.textContent = `伝票番号: ${receiptCode}`;
+}
+
+const barcodeEl = document.getElementById("receipt-barcode");
+if (barcodeEl && typeof JsBarcode !== "undefined") {
+ JsBarcode(barcodeEl, receiptCode, {
+  format: "CODE128",
+  width: 2,
+  height: 64,
+  displayValue: false,
+  margin: 0
+ });
+}
+
+function formatResultText(text) {
+ return text.replace(/([。、？])(?=.)/g, "$1\n");
+}
+
+function buildReceiptCode() {
+ const STORAGE_HISTORY_KEY = "dahlia_checkout_history";
+ const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+
+ try {
+  const raw = localStorage.getItem(STORAGE_HISTORY_KEY);
+  const history = raw ? JSON.parse(raw) : [];
+  const latest = Array.isArray(history) && history.length > 0 ? history[0] : null;
+
+  const idPart = String(latest?.id ?? Date.now()).slice(-8).padStart(8, "0");
+  const totalPart = String(latest?.total ?? 0).padStart(5, "0");
+  return `DHL${today}${idPart}${totalPart}`;
+ } catch (_error) {
+  const fallback = String(Date.now()).slice(-8).padStart(8, "0");
+  return `DHL${today}${fallback}00000`;
+ }
+}

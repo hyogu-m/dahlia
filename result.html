@@ -1,28 +1,37 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>診断結果</title>
+    <link rel="stylesheet" href="style.css?v=20260308-3" />
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+  </head>
 
-<head>
-<meta charset="UTF-8">
-<title>診断結果</title>
+  <body class="menu-page result-page">
+    <main class="menu-screen result-screen">
+      <h1 class="menu-title result-heading">あなたのタイプは…</h1>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+      <section class="result-card" aria-live="polite">
+        <img id="result-image" class="result-image" alt="診断結果の動物イラスト" />
+        <h2 id="result-name" class="result-name"></h2>
+        <p id="result-text" class="result-text"></p>
+      </section>
 
-</head>
+      <section class="result-share">
+        <h3 class="result-share-title">この会計の伝票バーコード</h3>
+        <div class="result-qr">
+          <svg id="receipt-barcode" class="result-barcode" aria-label="会計伝票バーコード"></svg>
+        </div>
+        <p id="receipt-code" class="result-receipt-code"></p>
+      </section>
 
-<body>
+      <section class="result-message">
+        <p class="result-note">レジまでお向かいください</p>
+        <p class="result-note">またのお越しをお待ちしております</p>
+      </section>
+    </main>
 
-<h1>あなたのタイプ</h1>
-
-<h2 id="result-name"></h2>
-
-<p id="result-text"></p>
-
-<h3>この結果を持ち帰る</h3>
-
-<div id="qr"></div>
-
-<script src="js/result.js"></script>
-
-</body>
-
+    <script src="js/result.js?v=20260308-3"></script>
+  </body>
 </html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>注文アプリ</title>
+    <link rel="stylesheet" href="style.css?v=20260307-1" />
+  </head>
+
+  <body class="landing-page">
+    <div class="app">
+      <!-- まずページ全体の箱で次がアプリ全体の箱-->
+
+      <div class="landing-slider" aria-hidden="true">
+        <div class="landing-slider-track">
+          <img
+            class="landing-slider-image"
+            src="assets/landing-slide.png"
+            alt=""
+          />
+          <img
+            class="landing-slider-image"
+            src="assets/landing-slide.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <h1 class="title">オーダーアニマル<br>診断</h1>
+      <!-- aria-hidden="true" は読み上げ機能なしってこと　-->
+      <!-- まず流れる画像エリアを作りたい　-->
+      <!-- 画像そのものを動かしたい　-->
+
+      <div class="button-area">
+        <button class="start-btn">注文を始める</button>
+      </div>
+    </div>
+    <!-- button-area:配置担当／start-btn:ボタンそのものの見た目担当　-->
+
+
+    <audio id="start-audio" src="assets/start-sound.mp3" preload="auto"></audio>
+    <script src="script.js?v=20260307-1"></script>
+
+    <!--preload="auto"：押した瞬間に音が鳴るように先に準備 　-->
+    <!-- htmlを読み込んでからjsを実装したいので最後にjsかく-->
+  </body>
+</html>
