@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "TamanegiKaisho";
-  src: url("./font/玉ねぎ楷書激無料版v7改.ttf") format("truetype");
+  src: url("/assets/fonts/tamanegi-kaisho.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
