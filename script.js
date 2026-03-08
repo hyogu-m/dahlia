@@ -79,6 +79,9 @@ function resumeStartSoundOnMenuPage() {
 
 function initMenuPage() {
   const STORAGE_HISTORY_KEY = 'dahlia_checkout_history';
+  if (isReloadNavigation()) {
+    localStorage.removeItem(STORAGE_HISTORY_KEY);
+  }
 
   const menuCards = Array.from(document.querySelectorAll('.menu-card'));
   const checkoutButton = document.querySelector('.checkout-btn');
@@ -91,6 +94,7 @@ function initMenuPage() {
   const cartPanel = document.querySelector('.cart-panel');
   const cartOverlay = document.querySelector('.cart-overlay');
   const cartCloseButton = document.querySelector('.cart-close-btn');
+  const historyCheckoutButton = document.querySelector('.history-checkout-btn');
   const historyList = document.querySelector('.history-list');
   const historyEmpty = document.querySelector('.history-empty');
   const historyTotal = document.querySelector('.history-total');
@@ -133,6 +137,7 @@ function initMenuPage() {
       return;
     }
 
+    const diagnosisOrders = cartItems.map((item) => ({ tags: item.tags ?? [] }));
     const total = cartItems.reduce((sum, item) => sum + item.price, 0);
     const items = Object.values(groupByName(cartItems));
     checkoutHistory.unshift({
@@ -140,6 +145,7 @@ function initMenuPage() {
       total,
       itemCount: cartItems.length,
       items,
+      diagnosisOrders,
       at: new Date().toLocaleString('ja-JP'),
     });
 
@@ -151,7 +157,30 @@ function initMenuPage() {
 
     renderCart();
     closeOrderModal();
-    window.alert('注文を受け付けました');
+  });
+
+  historyCheckoutButton?.addEventListener('click', () => {
+    if (checkoutHistory.length === 0) {
+      window.alert('注文履歴がありません');
+      return;
+    }
+
+    const diagnosisOrders = checkoutHistory.flatMap((history) => {
+      if (Array.isArray(history.diagnosisOrders)) {
+        return history.diagnosisOrders;
+      }
+      return [];
+    });
+
+    if (diagnosisOrders.length === 0) {
+      window.alert('診断できる注文履歴がありません');
+      return;
+    }
+
+    closeCartPanel();
+    if (typeof goToResultPage === 'function') {
+      goToResultPage(diagnosisOrders);
+    }
   });
 
   cartIconButton?.addEventListener('click', openCartPanel);
@@ -224,12 +253,25 @@ function initMenuPage() {
     const name = card.querySelector('.menu-name')?.textContent?.trim();
     const priceText = card.querySelector('.menu-price')?.textContent?.trim() ?? '';
     const price = Number(priceText.replace(/[^0-9]/g, ''));
+    const tags = extractTags(card);
 
     if (!name || Number.isNaN(price)) {
       return null;
     }
 
-    return { name, price };
+    return { name, price, tags };
+  }
+
+  function extractTags(card) {
+    const raw = card.querySelector('.menu-tags')?.textContent?.trim() ?? '';
+    if (!raw) {
+      return [];
+    }
+
+    return raw
+      .split('・')
+      .map((tag) => tag.trim())
+      .filter(Boolean);
   }
 
   function collectOrderByQuantities() {
@@ -466,4 +508,14 @@ function initMenuPage() {
   function formatYen(value) {
     return `${value.toLocaleString('ja-JP')}円`;
   }
+}
+
+function isReloadNavigation() {
+  const navEntries = performance.getEntriesByType('navigation');
+  if (Array.isArray(navEntries) && navEntries.length > 0) {
+    return navEntries[0].type === 'reload';
+  }
+
+  // Fallback for older Navigation Timing API.
+  return typeof performance.navigation !== 'undefined' && performance.navigation.type === 1;
 }
