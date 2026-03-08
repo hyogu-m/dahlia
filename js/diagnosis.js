@@ -1,6 +1,6 @@
 function diagnose(orders) {
-  // 0. 【特殊判定】胃もたれゾウさん (例: 10個以上)
-  const LIMIT_COUNT = 10; 
+  // 0. 【特殊判定】胃もたれゾウさん (20個以上)
+  const LIMIT_COUNT = 20; 
   if (orders.length >= LIMIT_COUNT){
      return "heavyElephant";
   }
@@ -25,7 +25,7 @@ function diagnose(orders) {
   if (maxVal === 0) return "chameleon";
 
   // 3. 最大値と同じ値を持つタグをすべて抽出
-  // ここで、配列の並びを「優先順位順」にしておくのがポイント
+  // 配列の並びを「優先順位順」
   const priorityOrder = [
     "肉", "重", "揚げ物", "酒", "スピードメニュー", 
     "和食", "海外", "魚", "洋", "茶色", "甘", "野菜", "軽"
@@ -36,7 +36,7 @@ function diagnose(orders) {
   // 4. 同数個数による分岐
  
   // topTags.length の数によって直接 return する
-  if (topTags.length >= 3 || topTags.length === 0) {
+  if (topTags.length >= 4 || topTags.length === 0) {
     return "chameleon"; 
    }
 

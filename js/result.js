@@ -1,3 +1,11 @@
+// 戻る操作対策
+
+history.replaceState(null, "", location.href);
+history.pushState(null, "", location.href);
+window.onpopstate = function () {
+ location.href = "thanks.html";
+};
+
 // URLから診断タイプ取得
 
 const params = new URLSearchParams(location.search);
@@ -11,7 +19,6 @@ const results = {
  lion:{
   name:"パワフルライオン",
   text:"今日のあなたはとても肉食系。たんぱく質は筋肉を育てるのに重要な存在です。今日からあなたも筋トレ仲間ですね。"
-  
  },
 
  koala:{
@@ -134,3 +141,4 @@ if (qrRoot && typeof QRCode !== "undefined") {
 function formatResultText(text) {
  return text.replace(/([。、？])(?=.)/g, "$1\n");
 }
+
