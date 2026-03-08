@@ -86,19 +86,51 @@ const results = {
 
 };
 
+const images = {
+ lion: "img/lion.png",
+ koala: "img/koala.png",
+ pig: "img/pig.png",
+ chameleon: "img/chameleon.png",
+ fullElephant: "img/fullElephant.png",
+ heavyElephant: "img/heavyElephant.png",
+ panda: "img/panda.png",
+ cheetah: "img/cheetah.png",
+ snake: "img/snake.png",
+ rabbit: "img/rabbit.png",
+ japaneseStyle: "img/japaneseStyle.png",
+ alpaca: "img/alpaca.png",
+ pelican: "img/pelican.png",
+ bear: "img/bear.png",
+ raccoonDog: "img/raccoonDog.png"
+};
 
 // 表示
 
-const result = results[type];
+const safeType = results[type] ? type : "chameleon";
+const result = results[safeType];
+const imagePath = images[safeType] ?? images.chameleon;
+const formattedText = formatResultText(result.text);
 
 document.getElementById("result-name").textContent = result.name;
-document.getElementById("result-text").textContent = result.text;
+document.getElementById("result-text").textContent = formattedText;
+const imageEl = document.getElementById("result-image");
+if (imageEl) {
+ imageEl.src = imagePath;
+ imageEl.alt = result.name;
+}
 
 
 // QRコード生成
 
-new QRCode(
- document.getElementById("qr"),
- location.href
-);
+const qrRoot = document.getElementById("qr");
+if (qrRoot && typeof QRCode !== "undefined") {
+ new QRCode(qrRoot, {
+  text: location.href,
+  width: 140,
+  height: 140
+ });
+}
 
+function formatResultText(text) {
+ return text.replace(/([。、？])(?=.)/g, "$1\n");
+}

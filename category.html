@@ -30,6 +30,8 @@
           <span class="cart-count">0</span>
         </button>
       </header>
+
+      <!-- aria-expanded="false" :今は閉じてて開いたらtrue -->
       <nav class="category-nav" hidden aria-label="カテゴリジャンプ">
         <button type="button" class="category-nav-item" data-target="section-ippin">逸品</button>
         <button type="button" class="category-nav-item" data-target="section-teppan">鉄板焼き</button>
@@ -37,6 +39,8 @@
         <button type="button" class="category-nav-item" data-target="section-salad">サラダ</button>
         <button type="button" class="category-nav-item" data-target="section-drink">ドリンク</button>
       </nav>
+
+      <!-- jsでスクロール制御したい＝＞date-target="section-ippinを持たせてidで飛ばす" -->
 
       <section class="menu-content" aria-label="料理一覧">
         <section class="menu-block" id="section-ippin">
@@ -128,6 +132,10 @@
             </article>
           </div>
         </section>
+
+        <!-- menu-block:カテゴリ一個分/menu-grid:その中でカードを並べる場所-->
+        <!-- 一つのまとまった情報のかたまり＝article-->
+        <!-- 料理画像が大量にあるから、最初に全部読み込まないようにしたい。loading="lazy"-->
 
         <section class="menu-block" id="section-teppan">
           <h3 class="menu-block-title">鉄板焼き</h3>
@@ -392,6 +400,7 @@
           <p class="history-empty">履歴はまだありません</p>
           <p class="history-total">累計: 0円</p>
         </section>
+        <!-- jsで中身が変わる前提のコード、空のulなど-->
         <button type="button" class="history-checkout-btn">おあいそ</button>
       </aside>
       <div class="cart-overlay" hidden></div>
@@ -411,6 +420,7 @@
         <button class="action-btn checkout-btn">注文へ</button>
       </footer>
     </main>
-    <script src="script.js?v=20260307-1"></script>
+    <script src="js/diagnosis.js?v=20260308-1"></script>
+    <script src="script.js?v=20260308-1"></script>
   </body>
 </html>

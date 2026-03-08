@@ -13,8 +13,9 @@ function diagnose(orders) {
 
   orders.forEach(food => {
     food.tags.forEach(tag => {
-      if (counts.hasOwnProperty(tag)) {
-        counts[tag]++;
+      const normalizedTag = tag === "スピード" ? "スピードメニュー" : tag;
+      if (counts.hasOwnProperty(normalizedTag)) {
+        counts[normalizedTag]++;
       }
     });
   });
