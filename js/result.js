@@ -120,17 +120,43 @@ if (imageEl) {
 }
 
 
-// QRコード生成
+// 伝票バーコード生成
 
-const qrRoot = document.getElementById("qr");
-if (qrRoot && typeof QRCode !== "undefined") {
- new QRCode(qrRoot, {
-  text: location.href,
-  width: 140,
-  height: 140
+const receiptCode = buildReceiptCode();
+const receiptCodeEl = document.getElementById("receipt-code");
+if (receiptCodeEl) {
+ receiptCodeEl.textContent = `伝票番号: ${receiptCode}`;
+}
+
+const barcodeEl = document.getElementById("receipt-barcode");
+if (barcodeEl && typeof JsBarcode !== "undefined") {
+ JsBarcode(barcodeEl, receiptCode, {
+  format: "CODE128",
+  width: 2,
+  height: 64,
+  displayValue: false,
+  margin: 0
  });
 }
 
 function formatResultText(text) {
  return text.replace(/([。、？])(?=.)/g, "$1\n");
+}
+
+function buildReceiptCode() {
+ const STORAGE_HISTORY_KEY = "dahlia_checkout_history";
+ const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+
+ try {
+  const raw = localStorage.getItem(STORAGE_HISTORY_KEY);
+  const history = raw ? JSON.parse(raw) : [];
+  const latest = Array.isArray(history) && history.length > 0 ? history[0] : null;
+
+  const idPart = String(latest?.id ?? Date.now()).slice(-8).padStart(8, "0");
+  const totalPart = String(latest?.total ?? 0).padStart(5, "0");
+  return `DHL${today}${idPart}${totalPart}`;
+ } catch (_error) {
+  const fallback = String(Date.now()).slice(-8).padStart(8, "0");
+  return `DHL${today}${fallback}00000`;
+ }
 }

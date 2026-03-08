@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>診断結果</title>
-    <link rel="stylesheet" href="style.css?v=20260308-1" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css?v=20260308-3" />
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
   </head>
 
   <body class="menu-page result-page">
@@ -19,8 +19,11 @@
       </section>
 
       <section class="result-share">
-        <h3 class="result-share-title">この結果を持ち帰る</h3>
-        <div id="qr" class="result-qr"></div>
+        <h3 class="result-share-title">この会計の伝票バーコード</h3>
+        <div class="result-qr">
+          <svg id="receipt-barcode" class="result-barcode" aria-label="会計伝票バーコード"></svg>
+        </div>
+        <p id="receipt-code" class="result-receipt-code"></p>
       </section>
 
       <section class="result-message">
@@ -29,6 +32,6 @@
       </section>
     </main>
 
-    <script src="js/result.js?v=20260308-1"></script>
+    <script src="js/result.js?v=20260308-3"></script>
   </body>
 </html>

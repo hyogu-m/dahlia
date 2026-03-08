@@ -65,5 +65,5 @@ function diagnose(orders) {
 
 function goToResultPage(orders) {
   const type = diagnose(orders); // 計算実行
-  window.location.href = `result.html?type=${type}`; // ページ遷移
+  window.location.replace(`result.html?type=${type}`); // 履歴を置き換えて遷移
 }
